@@ -34,9 +34,9 @@ def inputSelectie(mode):
                 print("Sorry dat snap ik niet...")
     if mode == 0:
         return stringInput.lower()
-    if mode == 1:
+    elif mode == 1:
         return aantalBolletjes  
-    if mode == 2:
+    elif mode == 2:
         return again 
 
 again = 1   
