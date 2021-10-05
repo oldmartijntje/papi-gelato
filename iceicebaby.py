@@ -1,27 +1,55 @@
-def bolletjesSelectie():
+def inputSelectie(mode):
     loop = 1
     while loop == 1:
-        aantalBolletjes = input("hoe veel bolletjes wilt u?")
-        try:
-            aantalBolletjes = int(aantalBolletjes)
-            if aantalBolletjes >= 1 and aantalBolletjes <= 3:
-                print("")
-                loop = 0
-            elif aantalBolletjes >= 4 and aantalBolletjes <=8:
-                print(f"Dan krijgt u van mij {aantalBolletjes} bolletjes")
-                loop = 0
-            elif aantalBolletjes > 8:
-                print("Sorry, zulke grote bakjes hebben we niet")
+        stringInput = input("")
+        if mode == 0:
+            if stringInput.lower() == "a" or stringInput.lower()== "b":
+                    loop = 0
             else:
                 print("Sorry dat snap ik niet...")
-        except:
-            print("Sorry dat snap ik niet...")
-    return aantalBolletjes  
-def bakjeOfHoorntje():
-    print()
-    
+        if mode == 1:
+            try:
+                aantalBolletjes = int(stringInput)
+                if aantalBolletjes >= 1 and aantalBolletjes <= 3:
+                    print("")
+                    loop = 0
+                elif aantalBolletjes >= 4 and aantalBolletjes <=8:
+                    print(f"Dan krijgt u van mij {aantalBolletjes} bolletjes")
+                    loop = 0
+                elif aantalBolletjes > 8:
+                    print("Sorry, zulke grote bakjes hebben we niet")
+                else:
+                    print("Sorry dat snap ik niet...")
+            except:
+                print("Sorry dat snap ik niet...")
+        if mode == 2:
+            if stringInput.lower() == "y":
+                again = 1
+                loop = 0
+            elif stringInput.lower() == "n":
+                again = 0
+                loop = 0
+                print("Bedankt en tot ziens!")
+            else:
+                print("Sorry dat snap ik niet...")
+    if mode == 0:
+        return stringInput.lower()
+    if mode == 1:
+        return aantalBolletjes  
+    if mode == 2:
+        return again 
 
-print("Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.")
-aantalBolletjes = bolletjesSelectie()
-
+again = 1   
+while again == 1:
+    print("Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.")
+    print("hoe veel bolletjes wilt u?")
+    aantalBolletjes = inputSelectie(1)
+    print(f"Wilt u deze {aantalBolletjes} bolletje(s) in A) een hoorntje of B) een bakje?")
+    bakjeOfHoorntje = inputSelectie(0)
+    if bakjeOfHoorntje == "a":
+        bestelling = "hoorntje"
+    elif bakjeOfHoorntje == "b":
+        bestelling = "bakje"
+    print(f"Hier is uw {bestelling} met {aantalBolletjes} bolletje(s). Wilt u nog meer bestellen? (Y/N)")
+    again = inputSelectie(2)
 
