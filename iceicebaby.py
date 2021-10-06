@@ -1,3 +1,5 @@
+def snapUNiet():
+    print("Sorry dat snap ik niet...")
 def inputSelectie(mode):
     loop = 1
     while loop == 1:
@@ -6,7 +8,7 @@ def inputSelectie(mode):
             if stringInput.lower() == "a" or stringInput.lower()== "b":
                     loop = 0
             else:
-                print("Sorry dat snap ik niet...")
+                snapUNiet()
         if mode == 1:
             try:
                 aantalBolletjes = int(stringInput)
@@ -19,9 +21,9 @@ def inputSelectie(mode):
                 elif aantalBolletjes > 8:
                     print("Sorry, zulke grote bakjes hebben we niet")
                 else:
-                    print("Sorry dat snap ik niet...")
+                    snapUNiet()
             except:
-                print("Sorry dat snap ik niet...")
+                snapUNiet()
         if mode == 2:
             if stringInput.lower() == "y":
                 again = 1
@@ -31,7 +33,7 @@ def inputSelectie(mode):
                 loop = 0
                 print("Bedankt en tot ziens!")
             else:
-                print("Sorry dat snap ik niet...")
+                snapUNiet()
     if mode == 0:
         return stringInput.lower()
     elif mode == 1:
@@ -48,19 +50,24 @@ def smaakjes(aantalBolletjes):
                 print("Sorry dat snap ik niet...")
             else:
                 loop = 0
-        
+def bonnetjeCreatie():
+    print()
+
+aankopen = [0,0,0]
 again = 1   
 while again == 1:
     print("Welkom bij Papi Gelato")
     print("hoe veel bolletjes wilt u?")
-    aantalBolletjes = inputSelectie(1)
-    smaakjes(aantalBolletjes)
-    print(f"Wilt u deze {aantalBolletjes} bolletje(s) in A) een hoorntje of B) een bakje?")
+    aankopen[0] += inputSelectie(1)
+    smaakjes(aankopen[0])
+    print(f"Wilt u deze {aankopen[0]} bolletje(s) in A) een hoorntje of B) een bakje?")
     bakjeOfHoorntje = inputSelectie(0)
     if bakjeOfHoorntje == "a":
+        aankopen[1] += 1
         bestelling = "hoorntje"
     elif bakjeOfHoorntje == "b":
+        aankopen[2] += 1
         bestelling = "bakje"
-    print(f"Hier is uw {bestelling} met {aantalBolletjes} bolletje(s). Wilt u nog meer bestellen? (Y/N)")
+    print(f"Hier is uw {bestelling} met {aankopen[0]} bolletje(s). Wilt u nog meer bestellen? (Y/N)")
     again = inputSelectie(2)
 
