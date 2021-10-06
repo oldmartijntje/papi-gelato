@@ -38,12 +38,23 @@ def inputSelectie(mode):
         return aantalBolletjes  
     elif mode == 2:
         return again 
-
+def smaakjes(aantalBolletjes):
+    for x in range( 1, aantalBolletjes+1):
+        loop = 1
+        while loop == 1:
+            print(f"Welke smaak wilt u voor bolletje nummer {x}? A) Aardbei, C) Chocolade, M) Munt of V) Vanille?")
+            smaakKeuze = input().lower()
+            if smaakKeuze != "a" and smaakKeuze != "c" and smaakKeuze != "m" and smaakKeuze != "v":
+                print("Sorry dat snap ik niet...")
+            else:
+                loop = 0
+        
 again = 1   
 while again == 1:
     print("Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.")
     print("hoe veel bolletjes wilt u?")
     aantalBolletjes = inputSelectie(1)
+    smaakjes(aantalBolletjes)
     print(f"Wilt u deze {aantalBolletjes} bolletje(s) in A) een hoorntje of B) een bakje?")
     bakjeOfHoorntje = inputSelectie(0)
     if bakjeOfHoorntje == "a":
