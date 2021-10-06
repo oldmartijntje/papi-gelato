@@ -10,6 +10,11 @@ def inputSelectie(mode):
     loop = 1
     while loop == 1:
         stringInput = input("")
+        if mode == 3:
+            if stringInput.lower() == "a" or stringInput.lower()== "b"or stringInput.lower()== "c"or stringInput.lower()== "d":
+                    loop = 0
+            else:
+                snapUNiet()
         if mode == 0:
             if stringInput.lower() == "a" or stringInput.lower()== "b":
                     loop = 0
@@ -40,7 +45,7 @@ def inputSelectie(mode):
                 print("Bedankt en tot ziens!")
             else:
                 snapUNiet()
-    if mode == 0:
+    if mode == 0 or mode == 3:
         return stringInput.lower()
     elif mode == 1:
         return aantalBolletjes  
@@ -56,6 +61,20 @@ def smaakjes(aantalBolletjes):
                 print("Sorry dat snap ik niet...")
             else:
                 loop = 0
+def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje):
+    if toppingsKeuze == "b":
+        return 4
+    elif toppingsKeuze == "c":
+        return 5
+    elif toppingsKeuze == "d":
+        if bakjeOfHoorntje == "a":
+            return 6   
+        elif bakjeOfHoorntje == "b":
+            return 7
+    else:
+        return "nee"
+            
+        
 def bonnetjeCreatie(aankopen):
     kosten = 0
     print('--------["Papi Gelato"]--------\n')
@@ -65,7 +84,7 @@ def bonnetjeCreatie(aankopen):
     print("                         -------+\nTotaal                   = €"+str(kosten))
     print(aankopen)
 
-aankopen = [0,0,0,0]
+aankopen = [0,0,0,0,0,0,0,0]
 again = 1   
 while again == 1:
     print("Welkom bij Papi Gelato")
@@ -81,6 +100,11 @@ while again == 1:
     elif bakjeOfHoorntje == "b":
         aankopen[2] += 1
         bestelling = "bakje"
+    print("Wat voor topping wilt u: A) Geen, B) Slagroom, C) Sprinkels of D) Caramel Saus?")
+    toppingKeuze = inputSelectie(2)
+    nummer = toppingsKeuzeNaarNummer(toppingKeuze,bakjeOfHoorntje)
+    if nummer != "nee":
+        aankopen[nummer] +=1
     print(f"Hier is uw {bestelling} met {aankopen[0]} bolletje(s). Wilt u nog meer bestellen? (Y/N)")
     again = inputSelectie(2)
 bonnetjeCreatie(aankopen)
