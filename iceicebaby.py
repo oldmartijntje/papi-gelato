@@ -51,7 +51,7 @@ def smaakjes(aantalBolletjes):
         
 again = 1   
 while again == 1:
-    print("Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.")
+    print("Welkom bij Papi Gelato")
     print("hoe veel bolletjes wilt u?")
     aantalBolletjes = inputSelectie(1)
     smaakjes(aantalBolletjes)
