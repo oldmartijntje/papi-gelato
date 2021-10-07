@@ -1,5 +1,5 @@
 def snapUNiet():
-    print("Sorry dat snap ik niet...")
+    print("Sorry dat is geen optie die we aanbieden...")
 def bonnetjeCheck(nummer,naam,prijs,aankopen):
     if aankopen[nummer] > 0 and nummer < 4 or nummer == 8 and aankopen[nummer]>0:
         print(naam+str(aankopen[nummer])+" x "+prijs+"   = €" + str(round(aankopen[nummer]*float(prijs),2)))
@@ -71,7 +71,7 @@ def smaakjes(aantalBolletjes,keuze):
     for x in range( 1, aantalBolletjes[bolletjesOfLiter]+1):
         loop = 1
         while loop == 1:
-            print(f"Welke smaak wilt u voor {keuze} nummer {x}? A) Aardbei, C) Chocolade, M) Munt of V) Vanille?")
+            print(f"Welke smaak wilt u voor {keuze} nummer {x}? A) Aardbei, C) Chocoladeof V) Vanille?")
             smaakKeuze = input().lower()
             if smaakKeuze != "a" and smaakKeuze != "c" and smaakKeuze != "m" and smaakKeuze != "v":
                 snapUNiet()
@@ -95,7 +95,7 @@ def bonnetjeCreatie(aankopen):
     toppings = 0
     kosten = 0
     print('--------["Papi Gelato"]--------\n')
-    kosten += bonnetjeCheck(0,"Bolletjes       ","1.10",aankopen)
+    kosten += bonnetjeCheck(0,"Bolletjes       ","0.95",aankopen)
     kosten += bonnetjeCheck(8,"Liter           ","9.80",aankopen)
     kosten += bonnetjeCheck(1,"Horrentje       ","1.25",aankopen)
     kosten += bonnetjeCheck(2,"Bakje           ","0.75",aankopen)
@@ -108,7 +108,7 @@ def bonnetjeCreatie(aankopen):
         print("Toppings                   = €"+str(round(toppings,2)))
     print("                           -------+\nTotaal                     = €"+str(round(kosten, 2)))
     if aankopen[8] > 0:
-        print("BTW (9%)                   = €" + str(round(kosten/109*9,2)))
+        print("BTW (9%)                   = €" + str(round(kosten/106*6,2)))
          
     
 
