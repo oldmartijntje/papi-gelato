@@ -91,7 +91,8 @@ def bonnetjeCreatie(aankopen):
     toppings+= bonnetjeCheck(6,"Caramel Saus    ","0.60",aankopen)
     toppings+= bonnetjeCheck(7,"Caramel Saus    ","0.90",aankopen)
     kosten += toppings
-    print("Toppings                   = €"+str(round(toppings,2)))
+    if toppings != 0:
+        print("Toppings                   = €"+str(round(toppings,2)))
     print("                           -------+\nTotaal                     = €"+str(round(kosten, 2)))
     
 
