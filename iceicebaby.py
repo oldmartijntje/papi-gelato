@@ -88,9 +88,7 @@ def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje):
         elif bakjeOfHoorntje == "b":
             return 7
     else:
-        return "nee"
-            
-        
+        return "nee"        
 def bonnetjeCreatie(aankopen):
     toppings = 0
     kosten = 0
@@ -109,9 +107,6 @@ def bonnetjeCreatie(aankopen):
     print("                           -------+\nTotaal                     = €"+str(round(kosten, 2)))
     if aankopen[8] > 0:
         print("BTW (9%)                   = €" + str(round(kosten/106*6,2)))
-         
-    
-
 aankopen = [0,0,0,0,0,0,0,0,0]
 again = 1   
 print("Welkom bij Papi Gelato")
