@@ -1,9 +1,13 @@
 def snapUNiet():
     print("Sorry dat snap ik niet...")
 def bonnetjeCheck(nummer,naam,prijs,aankopen):
-    if aankopen[nummer] > 0:
-        print(naam+str(aankopen[nummer])+" x "+str(prijs)+"   = €" + str(aankopen[nummer]*prijs))
-        return aankopen[nummer]*prijs
+    if aankopen[nummer] > 0 and nummer < 4:
+        print(naam+str(aankopen[nummer])+" x "+prijs+"   = €" + str(aankopen[nummer]*float(prijs)))
+        return aankopen[nummer]*float(prijs)
+    elif nummer == 5 and aankopen[nummer] > 0:
+        return aankopen[nummer]* float(prijs)*aankopen[0]
+    elif aankopen[nummer] > 0 and nummer > 3:
+        return aankopen[nummer]* float(prijs)
     else:
         return 0
 def inputSelectie(mode):
@@ -68,7 +72,7 @@ def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje):
         return 5
     elif toppingsKeuze == "d":
         if bakjeOfHoorntje == "a":
-            return 6   
+            return 6
         elif bakjeOfHoorntje == "b":
             return 7
     else:
@@ -76,13 +80,20 @@ def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje):
             
         
 def bonnetjeCreatie(aankopen):
+    toppings = 0
     kosten = 0
     print('--------["Papi Gelato"]--------\n')
-    kosten += bonnetjeCheck(0,"Bolletjes    ",1.10,aankopen)
-    kosten += bonnetjeCheck(1,"Horrentje    ",1.25,aankopen)
-    kosten += bonnetjeCheck(2,"Horrentje    ",0.75,aankopen)
-    print("                         -------+\nTotaal                   = €"+str(kosten))
-    print(aankopen)
+    kosten += bonnetjeCheck(0,"Bolletjes       ","1.10",aankopen)
+    kosten += bonnetjeCheck(1,"Horrentje       ","1.25",aankopen)
+    kosten += bonnetjeCheck(2,"Bakje           ","0.75",aankopen)
+    toppings+= bonnetjeCheck(4,"Slagroom        ","0.50",aankopen)
+    toppings+= bonnetjeCheck(5,"Sprinkles       ","0.30",aankopen)
+    toppings+= bonnetjeCheck(6,"Caramel Saus    ","0.60",aankopen)
+    toppings+= bonnetjeCheck(7,"Caramel Saus    ","0.90",aankopen)
+    kosten += toppings
+    print("Toppings                   = €"+str(round(toppings,2)))
+    print("                           -------+\nTotaal                     = €"+str(round(kosten, 2)))
+    
 
 aankopen = [0,0,0,0,0,0,0,0]
 again = 1   
@@ -101,7 +112,7 @@ while again == 1:
         aankopen[2] += 1
         bestelling = "bakje"
     print("Wat voor topping wilt u: A) Geen, B) Slagroom, C) Sprinkels of D) Caramel Saus?")
-    toppingKeuze = inputSelectie(2)
+    toppingKeuze = inputSelectie(3)
     nummer = toppingsKeuzeNaarNummer(toppingKeuze,bakjeOfHoorntje)
     if nummer != "nee":
         aankopen[nummer] +=1
