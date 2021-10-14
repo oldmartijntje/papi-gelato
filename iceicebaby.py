@@ -5,7 +5,7 @@ def bonnetjeCheck(nummer,naam,prijs,aankopen):
         print(naam+str(aankopen[nummer])+" x "+prijs+"   = €" + str(round(aankopen[nummer]*float(prijs),2)))
         return aankopen[nummer]*float(prijs)
     elif nummer == 5 and aankopen[nummer] > 0:
-        return aankopen[nummer]* float(prijs)*aankopen[0]
+        return aankopen[nummer]* float(prijs)*aankopen[9]
     elif aankopen[nummer] > 0 and nummer > 3:
         return aankopen[nummer]* float(prijs)
     else:
@@ -77,37 +77,43 @@ def smaakjes(aantalBolletjes,keuze):
                 snapUNiet()
             else:
                 loop = 0
-def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje):
+def toppingsKeuzeNaarNummer(toppingsKeuze,bakjeOfHoorntje, aankopen):
     if toppingsKeuze == "b":
-        return 4
+        aankopen[10] = 4
+        return aankopen
     elif toppingsKeuze == "c":
-        return 5
+        aankopen[9] += aankopen[3]
+        aankopen[10] = 5
+        return aankopen
     elif toppingsKeuze == "d":
         if bakjeOfHoorntje == "a":
-            return 6
+            aankopen[10] = 6
+            return aankopen
         elif bakjeOfHoorntje == "b":
-            return 7
+            aankopen[10] = 7
+            return aankopen
     else:
-        return "nee"        
+        aankopen[10] = 0 
+        return aankopen         
 def bonnetjeCreatie(aankopen):
     toppings = 0
     kosten = 0
     print('--------["Papi Gelato"]--------\n')
-    kosten += bonnetjeCheck(0,"Bolletjes       ","0.95",aankopen)
-    kosten += bonnetjeCheck(8,"Liter           ","9.80",aankopen)
-    kosten += bonnetjeCheck(1,"Horrentje       ","1.25",aankopen)
-    kosten += bonnetjeCheck(2,"Bakje           ","0.75",aankopen)
-    toppings+= bonnetjeCheck(4,"Slagroom        ","0.50",aankopen)
-    toppings+= bonnetjeCheck(5,"Sprinkles       ","0.30",aankopen)
-    toppings+= bonnetjeCheck(6,"Caramel Saus    ","0.60",aankopen)
-    toppings+= bonnetjeCheck(7,"Caramel Saus    ","0.90",aankopen)
+    kosten += bonnetjeCheck(0, "Bolletjes       ", "0.95", aankopen)
+    kosten += bonnetjeCheck(8, "Liter           ", "9.80", aankopen)
+    kosten += bonnetjeCheck(1, "Horrentje       ", "1.25", aankopen)
+    kosten += bonnetjeCheck(2, "Bakje           ", "0.75", aankopen)
+    toppings += bonnetjeCheck(4, "Slagroom        ", "0.50", aankopen)
+    toppings += bonnetjeCheck(5, "Sprinkles       ", "0.30", aankopen)
+    toppings += bonnetjeCheck(6, "Caramel Saus    ", "0.60", aankopen)
+    toppings += bonnetjeCheck(7, "Caramel Saus    ", "0.90", aankopen)
     kosten += toppings
     if toppings != 0:
         print("Toppings                   = €"+str(round(toppings,2)))
     print("                           -------+\nTotaal                     = €"+str(round(kosten, 2)))
     if aankopen[8] > 0:
-        print("BTW (9%)                   = €" + str(round(kosten/106*6,2)))
-aankopen = [0,0,0,0,0,0,0,0,0]
+        print("BTW (6%)                   = €" + str(round(kosten/106*6,2)))
+aankopen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 again = 1   
 print("Welkom bij Papi Gelato")
 print("Bent u 1) particulier of 2) zakelijk?")
@@ -118,19 +124,24 @@ while again == 1:
         aankopen[3] = inputSelectie(1,"bolletjes")
         aankopen[0] += aankopen[3]
         smaakjes(aankopen,"bolletjes")
-        print(f"Wilt u deze {aankopen[3]} bolletje(s) in A) een hoorntje of B) een bakje?")
-        bakjeOfHoorntje = inputSelectie(0)
-        if bakjeOfHoorntje == "a":
-            aankopen[1] += 1
-            bestelling = "hoorntje"
-        elif bakjeOfHoorntje == "b":
+        if aankopen[3] < 4:
+            print(f"Wilt u deze {aankopen[3]} bolletje(s) in A) een hoorntje of B) een bakje?")
+            bakjeOfHoorntje = inputSelectie(0)
+            if bakjeOfHoorntje == "a":
+                aankopen[1] += 1
+                bestelling = "hoorntje"
+            elif bakjeOfHoorntje == "b":
+                aankopen[2] += 1
+                bestelling = "bakje"
+        else:
+            bakjeOfHoorntje = 'b'
             aankopen[2] += 1
             bestelling = "bakje"
         print("Wat voor topping wilt u: A) Geen, B) Slagroom, C) Sprinkels of D) Caramel Saus?")
         toppingKeuze = inputSelectie(3)
-        nummer = toppingsKeuzeNaarNummer(toppingKeuze,bakjeOfHoorntje)
-        if nummer != "nee":
-            aankopen[nummer] +=1
+        aankopen = toppingsKeuzeNaarNummer(toppingKeuze,bakjeOfHoorntje,aankopen)
+        if aankopen[10] != 0:
+            aankopen[aankopen[10]] +=1
         print(f"Hier is uw {bestelling} met {aankopen[3]} bolletje(s). Wilt u nog meer bestellen? (Y/N)")
         again = inputSelectie(2)
     else:
