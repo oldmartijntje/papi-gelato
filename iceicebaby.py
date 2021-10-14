@@ -5,7 +5,7 @@ def bonnetjeCheck(nummer,naam,prijs,aankopen):
         print(naam+str(aankopen[nummer])+" x "+prijs+"   = €" + str(round(aankopen[nummer]*float(prijs),2)))
         return aankopen[nummer]*float(prijs)
     elif nummer == 5 and aankopen[nummer] > 0:
-        return aankopen[nummer]* float(prijs)*aankopen[9]
+        return float(prijs)*aankopen[9]
     elif aankopen[nummer] > 0 and nummer > 3:
         return aankopen[nummer]* float(prijs)
     else:
